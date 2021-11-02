@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>POC Webflux Thymeleaf and Vue(2 y 3)</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <script>
+        const message = "[[${product.name}]]";
+        const data2 = "[[${product2.atrr['color y tonalidad']}]]";
+    </script>
+    <!--    <script src="webjars/vue/2.6.14/vue.min.js"></script>-->
+    <script src="webjars/vue/3.2.20/dist/vue.global.prod.js"></script>
+</head>
+
+<body>
+<h1 th:text="${pageTitle}">JA JA JA</h1>
+<div>
+    <ul>
+        <li th:each="scientist : ${scientists}">
+            <span th:text="${scientist}"></span>
+        </li>
+    </ul>
+</div>
+<h2 th:text="${product.getName()}"></h2>
+<h2 th:text="${product2.getName()}"></h2>
+<h2 th:text="${product2.atrr['color y tonalidad']}"></h2>
+<h2 th:text="${product2.items[0].name}"></h2>
+<h2 th:text="${product2.items[0].price}"></h2>
+<h2 th:text="${product.name}"></h2>
+<h2 th:text="${product.atrr.talla}"></h2>
+<h2 th:text="${product.atrr.color}"></h2>
+<h2 th:text="#{dashboard.title}"></h2>
+
+<div th:object="${product}">
+    <p>Name: <span th:text="*{name}"></span></p>
+</div>
+
+<div th:object="${product2}">
+    <p>Price: <span th:text="*{items[0].price}"></span></p>
+
+</div>
+
+<a th:href="@{https://www.google.com/search?q=thymeleaf}">Search Thymeleaf</a> </br>
+<a th:href="@{https://www.google.com/search(q=${searchTerm})}">Search Thymeleaf 2</a> </br>
+
+<!--<a th:href="@{/test}">Go to test.html</a> </br>-->
+<a th:href="@{/test/{id}(id=${product.id})}">Go to test.html</a> </br>
+<hr>
+
+<h1>VUE</h1>
+<div id="app">
+    {{ message }} -
+    {{message2}}
+</div>
+
+<!--<script th:inline="javascript">-->
+<!--    const data = /*[[${product.name}]]*/ 'sombrero'-->
+<!--    const app = Vue.createApp({-->
+<!--        data() {-->
+<!--            return {-->
+<!--                message: data-->
+<!--            }-->
+<!--        }-->
+<!--    }).mount('#app')-->
+
+<!--VUE 2-->
+<!--</script>-->
+<!--<script th:inline="javascript">-->
+<!--    const data = /*[[${product.name}]]*/ 'sombrero';-->
+<!--    const data2 = [[${product2.atrr['color y tonalidad']}]]-->
+<!--    const app = new Vue({-->
+<!--        el: '#app',-->
+<!--        data() {-->
+<!--            return {-->
+<!--                message: data,-->
+<!--                message2: data2-->
+<!--            }-->
+<!--        }-->
+<!--    });-->
+<!--</script>-->
+<!--END VUE 2-->
+
+</body>
+<script th:src="@{/js/app.js}" th:inline="javascript"></script>
+</html>
