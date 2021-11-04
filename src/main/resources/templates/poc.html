@@ -9,13 +9,17 @@
     <script>
         const message = "[[${product.name}]]";
         const data2 = "[[${product2.atrr['color y tonalidad']}]]";
+        const talla = "[[${product.atrr.talla}]]";
+        const color = "[[${product.atrr.color}]]";
     </script>
     <!--    <script src="webjars/vue/2.6.14/vue.min.js"></script>-->
-    <script src="webjars/vue/3.2.20/dist/vue.global.prod.js"></script>
+    <script  src="webjars/vue/3.2.20/dist/vue.global.js" th:if="${@environment.acceptsProfiles('default')}"></script>
+    <script  src="webjars/vue/3.2.20/dist/vue.global.prod.js" th:if="${@environment.acceptsProfiles('production')}"></script>
 </head>
 
 <body>
 <h1 th:text="${pageTitle}">JA JA JA</h1>
+<h1 th:text="${@environment.acceptsProfiles('default')}">JA JA JA</h1>
 <div>
     <ul>
         <li th:each="scientist : ${scientists}">
@@ -50,10 +54,14 @@
 <hr>
 
 <h1>VUE</h1>
-<div id="app">
-    {{ message }} -
-    {{message2}}
-</div>
+<!--<div id="app">-->
+<!--    {{ message }} - -->
+<!--    {{message2}}-->
+<!--</div>-->
+
+<div th:replace="/fragments/fragment :: fragment" ></div>
+
+<div th:replace="/fragments/fragment2 :: fragment2"></div>
 
 <!--<script th:inline="javascript">-->
 <!--    const data = /*[[${product.name}]]*/ 'sombrero'-->
@@ -84,4 +92,5 @@
 
 </body>
 <script th:src="@{/js/app.js}" th:inline="javascript"></script>
+<script th:src="@{/js/app2.js}" th:inline="javascript"></script>
 </html>

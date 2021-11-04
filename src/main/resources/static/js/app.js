@@ -1,6 +1,7 @@
 
 const app = Vue.createApp({
-    data() {
+
+    setup() {
         return {
             message: message,
             message2: data2
