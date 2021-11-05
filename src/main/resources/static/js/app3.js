@@ -13,11 +13,11 @@ const store = Vuex.createStore({
 const Counter = Vue.createApp({
 
     setup() {
-        const s = Vuex.useStore();
+        // const s = Vuex.useStore();
 
         return {
-            count: Vue.computed(() => s.state.count),
-            increment: () => s.commit('increment'),
+            count: Vue.computed(() => store.state.count),
+            increment: () => store.commit('increment'),
         }
     },
     // view
