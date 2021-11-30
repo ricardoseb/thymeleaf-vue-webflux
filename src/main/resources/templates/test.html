@@ -13,5 +13,16 @@
 </div>
 <h2 th:text="${id}"></h2>
 
+<div id="updateBlock">
+    <!--2-->
+    <h1 data-th-each="update  : ${updates}">
+        [[${update}]]
+    </h1>
+</div>
+
+
+<script src="/js/ticker.js"></script>
+
+
 </body>
 </html>

@@ -18,16 +18,21 @@ package com.ricardoseb.basicecommerce.controller;
 
 import com.ricardoseb.basicecommerce.domain.Item;
 import com.ricardoseb.basicecommerce.domain.Product;
+import com.ricardoseb.basicecommerce.utils.IntervalMessageProducer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.reactive.result.view.Rendering;
+import org.thymeleaf.spring5.context.webflux.ReactiveDataDriverContextVariable;
 import reactor.core.publisher.Mono;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+
+import static org.springframework.http.MediaType.TEXT_EVENT_STREAM_VALUE;
 
 /**
  * @author Ricardo Quiroga
@@ -76,6 +81,14 @@ public class HomeController {
                         .build())
                 .modelAttributes("id", id)
                 .build());
+    }
+
+    @GetMapping(produces = TEXT_EVENT_STREAM_VALUE, value = "/ticker-stream")
+    String streamingUpdates(Model model) {
+        var producer = IntervalMessageProducer.produce();
+        var updates = new ReactiveDataDriverContextVariable(producer, 1);
+        model.addAttribute("updates", updates);
+        return "test :: #updateBlock";
     }
 
 }
