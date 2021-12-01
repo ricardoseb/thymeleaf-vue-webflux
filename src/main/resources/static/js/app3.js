@@ -28,6 +28,7 @@ const Counter = Vue.createApp({
         //con modulos
         return{
             count: Vue.computed(() => store.state.counter.count),
+            message: message,
             //pasamos en nombre del modulo en el commit
             increment: () => store.commit('counter/increment'),
         }

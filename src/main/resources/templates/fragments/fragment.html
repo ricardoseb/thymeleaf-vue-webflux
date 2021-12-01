@@ -2,9 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <div v-if="false" id="app" th:fragment="fragment">
-    <span v-if="true">holanda</span>
+    <span v-if="true">holanda fragment1</span>
     {{ message }} -
     {{message2}}
+    <hr>
+    <div>{{ count }}</div>
+    <button @click="increment">+</button>
+
+
 </div>
 
 </html>
