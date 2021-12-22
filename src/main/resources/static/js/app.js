@@ -1,5 +1,4 @@
 import testStore from "./module.js";
-console.log(testStore)
 const store2 = Vuex.createStore({
     modules: {
         counter: testStore

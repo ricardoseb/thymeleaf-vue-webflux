@@ -68,7 +68,9 @@
 
 <div th:replace="/fragments/fragment3 :: fragment3"></div>
 
-
+<div id="app6">
+    <component-a></component-a>
+</div>
 <!--<script th:inline="javascript">-->
 <!--    const data = /*[[${product.name}]]*/ 'sombrero'-->
 <!--    const app = Vue.createApp({-->
@@ -100,4 +102,5 @@
 <script th:src="@{/js/app.js}" th:inline="javascript" type="module"></script>
 <script th:src="@{/js/app2.js}" th:inline="javascript"></script>
 <script th:src="@{/js/app3.js}" th:inline="javascript" type="module"></script>
+<script th:src="@{/js/app6.js}" th:inline="javascript" type="module"></script>
 </html>
